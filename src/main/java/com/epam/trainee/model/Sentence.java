@@ -5,6 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.epam.trainee.utils.ValidationUtils.throwIfNullOrEmpty;
+import static com.epam.trainee.utils.ValidationUtils.throwIfOutOfBounds;
+
 public class Sentence {
 
     protected List<String> words;
@@ -14,6 +17,9 @@ public class Sentence {
     }
 
     public Sentence(String sentence, String regex) {
+        throwIfNullOrEmpty(sentence, "Sentence can't be null");
+        throwIfNullOrEmpty(regex, "Regex can't be null");
+
         String[] wordsArr = sentence.split(regex);
         words = prepareWords(Arrays.asList(wordsArr));
     }
@@ -31,18 +37,27 @@ public class Sentence {
     }
 
     public String getWord(int index) {
-        return null;
+        throwIfOutOfBounds(0, words.size(), index, "words list");
+
+        return words.get(index);
     }
 
     public void addWord(String word) {
-        throw new RuntimeException("implement me");
+        throwIfNullOrEmpty(word, "Attempt add string to sentence that does " +
+                "not represent a word. String is: \'" + word + "\'");
+
+        words.add(word);
     }
 
     public boolean removeWord(String word) {
-        throw new RuntimeException("inplement me");
+        return word != null && words.remove(word);
     }
 
     public boolean removeWord(int index) {
-        throw new RuntimeException("inplement me");
+        if (index < 0 || index >= words.size()) {
+            return false;
+        }
+        String word = words.get(index);
+        return removeWord(word);
     }
 }

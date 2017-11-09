@@ -40,12 +40,16 @@ public class ConsoleViewTest {
         expectLastCall().andThrow(new IOException());
 
         replay(outputStream);
+        consoleView.renderView("test");
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testNullInput() {
-        consoleView = new ConsoleView(null);
-        consoleView.renderView("test");
+    public void testNullInput() throws IOException {
+
+        replay(outputStream);
+
+        ConsoleView nullableView = new ConsoleView(null);
+        nullableView.renderView("test");
     }
 
     @After

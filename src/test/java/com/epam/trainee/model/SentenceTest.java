@@ -34,7 +34,7 @@ public class SentenceTest {
 
         assertEquals(2, sentence.words.size());
         assertEquals("Hello", sentence.words.get(0));
-        assertEquals("World", sentence.words.get(1));
+        assertEquals("World!", sentence.words.get(1));
     }
 
     @Test
@@ -71,7 +71,7 @@ public class SentenceTest {
         sentence.getWord(100); //sentence.words.size() is 0, actually
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = IndexOutOfBoundsException.class)
     public void testGetNegativeIndexWord() {
         sentence.getWord(-1);
     }
@@ -104,7 +104,7 @@ public class SentenceTest {
     @Test
     public void testRemoveNull() {
         boolean isRemoved = sentence.removeWord(null);
-        assertTrue(isRemoved);
+        assertFalse(isRemoved);
     }
 
     @Test

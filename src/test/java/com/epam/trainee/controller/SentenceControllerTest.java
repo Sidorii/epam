@@ -34,8 +34,8 @@ public class SentenceControllerTest {
 
         replay(view);
 
-        controller.proceedInput("test1");
-        controller.proceedInput("test2");
+        controller.processInput("test1");
+        controller.processInput("test2");
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -49,6 +49,6 @@ public class SentenceControllerTest {
         expectLastCall().once();
         replay(view);
 
-        controller.proceedInput(null);
+        controller.processInput(null);
     }
 }
