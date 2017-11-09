@@ -1,18 +1,23 @@
 package com.epam.trainee.view;
 
-public class ConsoleView implements View {
+import java.io.IOException;
+import java.io.OutputStream;
 
-    private String word;
-    private String message;
+public class ConsoleView implements View<String>{
 
+    private OutputStream out;
 
-    public ConsoleView(String word, String message) {
-        this.word = word;
-        this.message = message;
+    public ConsoleView(OutputStream out) {
+        this.out = out;
     }
 
     @Override
-    public void show() {
-        System.out.printf("You enter: %s, %s\n", word, message);
+    public void renderView(String data) {
+        try {
+            out.write(data.getBytes());
+            out.flush();
+        } catch (IOException exp) {
+            exp.printStackTrace();
+        }
     }
 }

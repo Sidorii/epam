@@ -1,77 +1,48 @@
 package com.epam.trainee.model;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Properties;
+import java.util.stream.Collectors;
 
 public class Sentence {
 
-    private static final String WORD_KEY = "sentence.word.";
-
-    private List<String> words;
+    protected List<String> words;
 
     public Sentence() {
         words = new ArrayList<>();
     }
 
-    public Sentence(List<String> words) {
-        this.words = words;
+    public Sentence(String sentence, String regex) {
+        String[] wordsArr = sentence.split(regex);
+        words = prepareWords(Arrays.asList(wordsArr));
     }
 
-    public Sentence(String propertiesFile) throws IOException {
-        this();
+    private List<String> prepareWords(List<String> dirtyWords) {
+        dirtyWords.forEach(String::trim);
 
-        Properties properties = new Properties();
-        properties.load(new FileInputStream(propertiesFile));
+        return dirtyWords.stream()
+                .filter((w) -> !w.equals(""))
+                .collect(Collectors.toList());
+    }
 
-        long wordsCount = properties.keySet()
-                .stream()
-                .map(String::valueOf)
-                .filter((w) -> (w).startsWith(WORD_KEY))
-                .count();
-
-        for (int i = 0; i < wordsCount; i++) {
-
-            String keyName = WORD_KEY
-                    .concat(String.valueOf(i));
-
-            String word = properties.getProperty(keyName);
-
-            if (word == null) {
-                throw new RuntimeException("Wrong word enumeration. Word with index " + i + " does not exists");
-            }
-            words.add(word);
-        }
+    public List<String> getWords() {
+        return words;
     }
 
     public String getWord(int index) {
-        return words.get(index);
+        return null;
     }
 
-    public void addWord(int position, String word) {
-        words.add(position, word);
+    public void addWord(String word) {
+        throw new RuntimeException("implement me");
     }
 
-    public void removeWord(String word) {
-        words.remove(word);
+    public boolean removeWord(String word) {
+        throw new RuntimeException("inplement me");
     }
 
-    public void removeWord(int index) {
-        words.remove(index);
-    }
-
-    public void updateWord(String oldWord, String newWord) {
-        int index = words.indexOf(oldWord);
-        updateWord(index, newWord);
-    }
-
-    public void updateWord(int index, String newWord) {
-        words.set(index, newWord);
-    }
-
-    public Iterable<String> getAllWords() {
-        return words;
+    public boolean removeWord(int index) {
+        throw new RuntimeException("inplement me");
     }
 }

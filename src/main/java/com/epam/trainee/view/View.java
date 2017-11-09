@@ -1,6 +1,6 @@
 package com.epam.trainee.view;
 
-public interface View {
+public interface View<T> {
 
-    void show();
+    void renderView(T data);
 }
