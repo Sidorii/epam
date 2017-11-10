@@ -4,11 +4,14 @@ import com.epam.trainee.model.Sentence;
 import com.epam.trainee.view.View;
 
 import java.util.Iterator;
+import java.util.ResourceBundle;
 
+import static com.epam.trainee.model.Messages.*;
 import static com.epam.trainee.utils.ValidationUtils.throwIfNull;
 
 public class SentenceController {
 
+    private ResourceBundle bundle;
     private Sentence sentence;
     private View<String> view;
     private Iterator<String> iterator;
@@ -20,6 +23,7 @@ public class SentenceController {
         this.sentence = sentence;
         this.view = view;
         this.iterator = sentence.getWords().iterator();
+        bundle = ResourceBundle.getBundle("Messages");
     }
 
     public void processInput(String input) {
@@ -32,17 +36,17 @@ public class SentenceController {
         }
 
         word = iterator.next();
-        result = "You entered: \'" + input + "\'. ";
+        result = String.format(bundle.getString(ENTER_TEXT.name()), input);
 
         if (isEquals(word, input)) {
             if (iterator.hasNext()) {
-                result += "This is correct word. \nPlease, enter the next word.";
+                result += bundle.getString(CORRECT.name());
             } else {
-                result += "Congratulations! You entered the whole sentence. Result is: " + sentence.getWords();
+                result += bundle.getString(COMPLETED.name() + sentence.getWords());
                 resetInput();
             }
         } else {
-            result += "Sorry, but it's not the correct word. Should have been: \'" + word + "\'. Try over again";
+            result += String.format(bundle.getString(INCORRECT.name()), input);
             resetInput();
         }
 
