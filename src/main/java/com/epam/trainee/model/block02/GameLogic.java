@@ -8,6 +8,9 @@ import java.util.Properties;
 public class GameLogic {
 
     private static final String CONFIG_NAME = "application02.properties";
+    private static final String PROP_NUMB = "number";
+    private static final String PROP_LEFT = "bounds.left";
+    private static final String PROP_RIGHT = "bounds.right";
 
     protected final int number;
     protected Bounds bounds;
@@ -19,9 +22,9 @@ public class GameLogic {
             String fileName = ClassLoader.getSystemResource(CONFIG_NAME).getFile();
             properties.load(new FileInputStream(fileName));
 
-            number = Integer.valueOf(properties.getProperty("number"));
-            int left = Integer.valueOf(properties.getProperty("bounds.left"));
-            int right = Integer.valueOf(properties.getProperty("bounds.right"));
+            number = Integer.valueOf(properties.getProperty(PROP_NUMB));
+            int left = Integer.valueOf(properties.getProperty(PROP_LEFT));
+            int right = Integer.valueOf(properties.getProperty(PROP_RIGHT));
             bounds = new Bounds(left, right);
             history = new LinkedList<>();
         } catch (IOException exc) {

@@ -16,7 +16,6 @@ public class RunnerBlock02 {
         GameLogic logic = new GameLogic();
 
         GameController controller = new GameController(logic, view);
-
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Enter number: ");
