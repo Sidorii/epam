@@ -1,19 +1,18 @@
-package com.epam.trainee.controller;
+package com.epam.trainee.controller.block01;
 
-import com.epam.trainee.model.Sentence;
-import com.epam.trainee.view.View;
+import com.epam.trainee.model.block01.Sentence;
+import com.epam.trainee.view.block01.View;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.easymock.EasyMock.*;
-import static org.junit.Assert.*;
 
 public class SentenceControllerTest {
-
 
     private SentenceController controller;
     private Sentence sentence;
     private View<String> view;
+
 
     @Before
     public void setUp() {
@@ -24,18 +23,14 @@ public class SentenceControllerTest {
 
     @Test
     public void testProceedInput() {
-
-
         view.renderView(anyObject());
         expectLastCall().once();
 
         view.renderView(anyObject());
         expectLastCall().once();
-
         replay(view);
 
         controller.processInput("test1");
-        controller.processInput("test2");
     }
 
     @Test(expected = IllegalArgumentException.class)

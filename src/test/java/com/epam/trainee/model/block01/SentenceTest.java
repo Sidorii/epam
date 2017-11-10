@@ -1,5 +1,6 @@
-package com.epam.trainee.model;
+package com.epam.trainee.model.block01;
 
+import com.epam.trainee.model.block01.Sentence;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -1,10 +1,10 @@
-package com.epam.trainee.utils;
+package com.epam.trainee.utils.block01;
 
 public final class ValidationUtils {
 
     public static void throwIfNull(Object o, String objName) {
         if (o == null) {
-            throw new IllegalArgumentException(objName + " can't bu null");
+            throw new IllegalArgumentException(objName + " can't be null");
         }
     }
 

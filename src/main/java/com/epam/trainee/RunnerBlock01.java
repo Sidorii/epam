@@ -1,12 +1,12 @@
 package com.epam.trainee;
 
-import com.epam.trainee.controller.SentenceController;
-import com.epam.trainee.model.Sentence;
-import com.epam.trainee.view.ConsoleView;
+import com.epam.trainee.controller.block01.SentenceController;
+import com.epam.trainee.model.block01.Sentence;
+import com.epam.trainee.view.block01.ConsoleView;
 
 import java.util.Scanner;
 
-public class Runner {
+public class RunnerBlock01 {
 
     public static void main(String[] args) {
         String input;

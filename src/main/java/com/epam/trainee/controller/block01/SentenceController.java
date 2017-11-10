@@ -1,17 +1,17 @@
-package com.epam.trainee.controller;
+package com.epam.trainee.controller.block01;
 
-import com.epam.trainee.model.Sentence;
-import com.epam.trainee.view.View;
+import com.epam.trainee.model.block01.Sentence;
+import com.epam.trainee.view.block01.View;
 
 import java.util.Iterator;
 import java.util.ResourceBundle;
 
-import static com.epam.trainee.model.Messages.*;
-import static com.epam.trainee.utils.ValidationUtils.throwIfNull;
+import static com.epam.trainee.model.block01.Messages.*;
+import static com.epam.trainee.utils.block01.ValidationUtils.throwIfNull;
 
 public class SentenceController {
 
-    private ResourceBundle bundle;
+    protected ResourceBundle bundle;
     private Sentence sentence;
     private View<String> view;
     private Iterator<String> iterator;
@@ -46,7 +46,7 @@ public class SentenceController {
                 resetInput();
             }
         } else {
-            result += String.format(bundle.getString(INCORRECT.name()), input);
+            result += String.format(bundle.getString(INCORRECT.name()), word);
             resetInput();
         }
 

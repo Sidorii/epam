@@ -1,12 +1,12 @@
-package com.epam.trainee.model;
+package com.epam.trainee.model.block01;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.epam.trainee.utils.ValidationUtils.throwIfNullOrEmpty;
-import static com.epam.trainee.utils.ValidationUtils.throwIfOutOfBounds;
+import static com.epam.trainee.utils.block01.ValidationUtils.throwIfNullOrEmpty;
+import static com.epam.trainee.utils.block01.ValidationUtils.throwIfOutOfBounds;
 
 public class Sentence {
 

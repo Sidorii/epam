@@ -1,4 +1,4 @@
-package com.epam.trainee.model;
+package com.epam.trainee.model.block01;
 
 public enum Messages {
 
@@ -6,5 +6,4 @@ public enum Messages {
     INCORRECT,
     COMPLETED,
     ENTER_TEXT;
-
 }

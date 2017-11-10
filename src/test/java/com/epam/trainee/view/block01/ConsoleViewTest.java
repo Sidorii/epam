@@ -1,5 +1,6 @@
-package com.epam.trainee.view;
+package com.epam.trainee.view.block01;
 
+import com.epam.trainee.view.block01.ConsoleView;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

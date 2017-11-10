@@ -1,9 +1,9 @@
-package com.epam.trainee.view;
+package com.epam.trainee.view.block01;
 
 import java.io.IOException;
 import java.io.OutputStream;
 
-import static com.epam.trainee.utils.ValidationUtils.throwIfNull;
+import static com.epam.trainee.utils.block01.ValidationUtils.throwIfNull;
 
 public class ConsoleView implements View<String>{
 
