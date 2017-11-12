@@ -37,12 +37,12 @@ public class GameController {
 
             if (gameLogic.guessNumber(number)) {
                 view.renderView(String.format(messageBundle.getString(WIN.name()), number));
-                view.renderView(String.format(messageBundle.getString(STATS.name()),gameLogic.getHistory()));
+                view.renderView(String.format(messageBundle.getString(STATS.name()),gameLogic.getInputHistory()));
                 gameLogic.resetStats();
                 return true;
             } else {
                 view.renderView(messageBundle.getString(FAIL.name()));
-                view.renderView(String.format(messageBundle.getString(PREVIOUS.name()), gameLogic.getHistory().getLast()));
+                view.renderView(String.format(messageBundle.getString(PREVIOUS.name()), gameLogic.getInputHistory().getLast()));
                 bounds = gameLogic.getBounds();
             }
         }

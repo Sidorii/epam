@@ -1,6 +1,7 @@
 package com.epam.trainee;
 
 import com.epam.trainee.controller.block02.GameController;
+import com.epam.trainee.model.block02.Bounds;
 import com.epam.trainee.model.block02.GameLogic;
 import com.epam.trainee.view.block01.ConsoleView;
 
@@ -13,18 +14,18 @@ public class RunnerBlock02 {
         int number;
         boolean isRightNumber = false;
         ConsoleView view = new ConsoleView(System.out);
-        GameLogic logic = new GameLogic();
+        GameLogic logic = new GameLogic(123, new Bounds(-10,200));
 
         GameController controller = new GameController(logic, view);
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Enter number: ");
+        System.out.println("Enter secretNumber: ");
 
         do {
             try {
                 if (isRightNumber) {
                     processNewGame(sc, controller);
-                    System.out.println("Enter number: ");
+                    System.out.println("Enter secretNumber: ");
                 }
 
                 if (!sc.hasNextInt()) {
@@ -62,7 +63,7 @@ public class RunnerBlock02 {
             return;
         }
 
-        System.out.print("Please, enter secret number:");
+        System.out.print("Please, enter secret secretNumber:");
         if (sc.hasNextInt()) {
             number = sc.nextInt();
         } else {

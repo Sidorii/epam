@@ -4,12 +4,14 @@ import com.epam.trainee.controller.block01.SentenceController;
 import com.epam.trainee.model.block01.Sentence;
 import com.epam.trainee.view.block01.ConsoleView;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class RunnerBlock01 {
 
     public static void main(String[] args) {
         String input;
+
 
         Sentence sentence = new Sentence("Hello world!", " ");
         ConsoleView view = new ConsoleView(System.out);

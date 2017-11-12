@@ -7,29 +7,30 @@ import java.util.Properties;
 
 public class GameLogic {
 
-    private static final String CONFIG_NAME = "application02.properties";
+    private static final String CONFIG_FILE_NAME = "application02.properties";
     private static final String PROP_NUMB = "number";
     private static final String PROP_LEFT = "bounds.left";
     private static final String PROP_RIGHT = "bounds.right";
 
-    protected final int number;
+    protected final int secretNumber;
     protected Bounds bounds;
-    private LinkedList<Integer> history;
+    private LinkedList<Integer> inputHistory;
 
     public GameLogic() {
         try {
             Properties properties = new Properties();
-            String fileName = ClassLoader.getSystemResource(CONFIG_NAME).getFile();
+            System.out.println(ClassLoader.getSystemResource(CONFIG_FILE_NAME));
+            String fileName = ClassLoader.getSystemResource(CONFIG_FILE_NAME).getFile();
             properties.load(new FileInputStream(fileName));
 
-            number = Integer.valueOf(properties.getProperty(PROP_NUMB));
+            secretNumber = Integer.valueOf(properties.getProperty(PROP_NUMB));
             int left = Integer.valueOf(properties.getProperty(PROP_LEFT));
             int right = Integer.valueOf(properties.getProperty(PROP_RIGHT));
             bounds = new Bounds(left, right);
-            history = new LinkedList<>();
+            inputHistory = new LinkedList<>();
         } catch (IOException exc) {
             exc.printStackTrace();
-            throw new IllegalStateException("Can't find configuration from properties file: " + CONFIG_NAME);
+            throw new IllegalStateException("Can't find configuration from properties file: " + CONFIG_FILE_NAME);
         }
     }
 
@@ -48,26 +49,26 @@ public class GameLogic {
         if (!this.bounds.hasNumber(number)) {
             throw new IllegalArgumentException("Number is out of bounds.");
         }
-        this.history = new LinkedList<>();
-        this.number = number;
+        this.inputHistory = new LinkedList<>();
+        this.secretNumber = number;
     }
 
 
-    public boolean guessNumber(int num) {
-        history.add(num);
+    public boolean guessNumber(int number) {
+        inputHistory.add(number);
 
-        if (!bounds.hasNumber(num)) {
+        if (!bounds.hasNumber(number)) {
             return false;
         }
 
-        if (num == number) {
+        if (number == secretNumber) {
             return true;
         }
 
-        if (num < number) {
-            bounds = new Bounds(num, bounds.getRightBound());
+        if (number < secretNumber) {
+            bounds = new Bounds(number, bounds.getRightBound());
         } else {
-            bounds = new Bounds(bounds.getLeftBound(), num);
+            bounds = new Bounds(bounds.getLeftBound(), number);
         }
 
         return false;
@@ -77,11 +78,11 @@ public class GameLogic {
         return bounds;
     }
 
-    public LinkedList<Integer> getHistory() {
-        return history;
+    public LinkedList<Integer> getInputHistory() {
+        return inputHistory;
     }
 
     public void resetStats() {
-        history.removeAll(history);
+        inputHistory.removeAll(inputHistory);
     }
 }

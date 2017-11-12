@@ -18,7 +18,7 @@ public class Sentence {
 
     public Sentence(String sentence, String regex) {
         throwIfNullOrEmpty(sentence, "Sentence can't be null");
-        throwIfNullOrEmpty(regex, "Regex can't be null");
+        throwIfNullOrEmpty(regex, "RegexNames can't be null");
 
         String[] wordsArr = sentence.split(regex);
         words = prepareWords(Arrays.asList(wordsArr));

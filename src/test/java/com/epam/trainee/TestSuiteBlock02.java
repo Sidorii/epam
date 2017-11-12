@@ -6,6 +6,8 @@ import com.epam.trainee.model.block02.GameLogicTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
+import java.util.Locale;
+
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         GameControllerTest.class,

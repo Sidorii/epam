@@ -1,0 +1,12 @@
+NAME=Type the name: 
+SURNAME=Type the surname:  
+PATRONYMIC=Type the patronymic:
+NICKNAME=Type the nickname: 
+COMMENT=Type the comment: 
+GROUP=Type the group: 
+PHONE=Type the phone: 
+MOBILE_PHONE=Type the mobile phone:
+MOBILE_PHONE2=Type the mobile phone 2:
+EMAIL=Type the email: 
+SKYPE=Type the skype: 
+ADDRESS=Type the address: 
