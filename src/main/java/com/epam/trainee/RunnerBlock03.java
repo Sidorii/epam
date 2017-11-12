@@ -8,7 +8,7 @@ public class RunnerBlock03 {
 
     public static void main(String[] args) {
         ConsoleView consoleView = new ConsoleView(System.out);
-        RecordsController controller = new RecordsController(new ConsoleView(System.out));
-        controller.addRecord();
+        RecordsController controller = new RecordsController(consoleView);
+        controller.addRecords();
     }
 }

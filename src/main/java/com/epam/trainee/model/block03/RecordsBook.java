@@ -4,7 +4,7 @@ import java.util.*;
 
 public class RecordsBook {
 
-    private static final int RECORD_LENGTH = RecordAttribute.size();
+    private static final int RECORD_LENGTH = RecordAttribute.visibleCount();
 
     private Map<Integer, Map<RecordAttribute, String>> records;
     private Map<RecordAttribute, String> currentRecord;

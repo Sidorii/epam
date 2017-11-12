@@ -20,24 +20,27 @@ public enum RecordAttribute {
     CREATION_DATE(false),
     LAST_MODIFYING(false);
 
-    private boolean isShowForUser;
+    private boolean isVisibleForUser;
 
-    RecordAttribute(boolean isShowForUser) {
-        this.isShowForUser = isShowForUser;
+    RecordAttribute(boolean isVisibleForUser) {
+        this.isVisibleForUser = isVisibleForUser;
     }
 
-    public boolean isShowForUser() {
-        return isShowForUser;
+    public boolean isVisibleForUser() {
+        return isVisibleForUser;
     }
 
-    public static int size() {
+    public static int visibleCount() {
         return (int) Arrays.stream(values())
-                .filter(RecordAttribute::isShowForUser).count();
+                .filter(RecordAttribute::isVisibleForUser)
+                .count();
     }
 
-    public static RecordAttribute[] getAllShown() {
+    public static RecordAttribute[] getAllVisible() {
         return Arrays.stream(values())
-                .filter(RecordAttribute::isShowForUser).collect(Collectors.toList()).toArray(new RecordAttribute[size()]);
+                .filter(RecordAttribute::isVisibleForUser)
+                .collect(Collectors.toList())
+                .toArray(new RecordAttribute[visibleCount()]);
     }
 
 }

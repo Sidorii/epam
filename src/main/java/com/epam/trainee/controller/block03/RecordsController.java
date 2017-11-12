@@ -1,8 +1,6 @@
 package com.epam.trainee.controller.block03;
 
-import com.epam.trainee.model.block03.FilterStrategy;
-import com.epam.trainee.model.block03.RecordAttribute;
-import com.epam.trainee.model.block03.RecordsBook;
+import com.epam.trainee.model.block03.*;
 import com.epam.trainee.view.block01.View;
 
 import java.util.ResourceBundle;
@@ -11,46 +9,67 @@ import java.util.Scanner;
 public class RecordsController {
 
     private static final String BUNDLE_NAME = "RecordBookMessages";
-    private RecordsBook recordsBook;
-    private View<String> outputView;
-    private FilterStrategy filterStrategy = new FilterStrategy();
     private ResourceBundle viewMessagesBundle = ResourceBundle.getBundle(BUNDLE_NAME);
 
-    public RecordsController(View<String> outputView) {
+    private RecordsBook recordsBook;
+    private AttributeValidator attributeValidator;
+    private View<String> view;
+
+    private final Scanner scanner;
+
+    public RecordsController(View<String> view) {
+        this.view = view;
+        this.scanner = new Scanner(System.in);
         recordsBook = new RecordsBook();
-        this.outputView = outputView;
+        attributeValidator = new RegexAttributeValidator();
     }
 
-    public void addRecord() {
-        Scanner scanner = new Scanner(System.in);
-        RecordAttribute[] recordAttributes;
 
-        recordAttributes = RecordAttribute.getAllShown();
+    public void addRecords() {
+
+        RecordAttribute[] visibleAttributes = RecordAttribute.getAllVisible();
+        RecordAttribute attributeKey;
+        String attributeValue;
 
         do {
             recordsBook.createNewRecord();
-            int attributeIndex = 0;
+            int index = 0;
 
             do {
-                RecordAttribute currentAttribute = recordAttributes[attributeIndex];
+                attributeKey = visibleAttributes[index++];
+                attributeValue = getValidInput(attributeKey);
+                recordsBook.appendToRecord(attributeKey, attributeValue);
 
-                outputView.renderView(viewMessagesBundle.getString(currentAttribute.name()));
-
-                if (!scanner.hasNextLine()) {
-                    break;
-                }
-                String input = scanner.nextLine();
-                boolean isMatch = filterStrategy.doFilter(currentAttribute, input);
-                if (!isMatch) {
-                    outputView.renderView("Entry doesn't match regex. Try again");
-                    continue;
-                }
-                attributeIndex++;
-                recordsBook.appendToRecord(currentAttribute, input);
-            } while (attributeIndex < recordAttributes.length);
+            } while (index < RecordAttribute.visibleCount());
 
             recordsBook.appendRecordToBook();
-            outputView.renderView("Fine! Now book is: " + recordsBook.getRecords());
+            view.renderView("Fine! Now book is: " + recordsBook.getRecords() + '\n');
         } while (true);
+    }
+
+
+    private String getValidInput(RecordAttribute attributeKey) {
+
+        String attributeValue;
+        boolean isValid;
+
+        do {
+            attributeValue = readInputForAttribute(attributeKey);
+            isValid = attributeValidator.validate(attributeKey, attributeValue);
+
+            if (isValid) {
+                break;
+            }
+            view.renderView("Entry doesn't match regex. Try again.\n");
+        } while (true);
+
+        return attributeValue;
+    }
+
+    private String readInputForAttribute(RecordAttribute currentAttribute) {
+        String messageToView = viewMessagesBundle.getString(currentAttribute.name());
+        view.renderView(messageToView);
+
+        return scanner.nextLine();
     }
 }

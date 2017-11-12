@@ -69,7 +69,7 @@ public class SentenceTest {
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void testGetWordOutOfBounds() {
-        sentence.getWord(100); //sentence.words.size() is 0, actually
+        sentence.getWord(100); //sentence.words.visibleCount() is 0, actually
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
