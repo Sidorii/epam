@@ -42,7 +42,7 @@ public class SentenceController {
             if (iterator.hasNext()) {
                 result += bundle.getString(CORRECT.name());
             } else {
-                result += bundle.getString(COMPLETED.name() + sentence.getWords());
+                result += bundle.getString(COMPLETED.name()) + sentence.getWords();
                 resetInput();
             }
         } else {
