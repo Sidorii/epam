@@ -32,6 +32,7 @@ public class RunnerBlock01 {
             System.out.print("\nEnter word: ");
 
         } while (!"quit".equals(input));
+
         System.out.println("Program is quit. Bye!");
     }
 }

@@ -1,6 +1,8 @@
 package com.epam.trainee.model.block03;
 
-public interface AttributeValidator {
+import com.epam.trainee.model.block03.bussiness.RecordAttribute;
+
+public interface AttributeValidator{
 
     boolean validate(RecordAttribute attribute, String input);
 }
