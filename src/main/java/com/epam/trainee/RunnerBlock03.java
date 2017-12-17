@@ -1,8 +1,8 @@
 package com.epam.trainee;
 
-import com.epam.trainee.controller.block03.RecordsController;
-import com.epam.trainee.model.block03.bussiness.Notebook;
-import com.epam.trainee.view.block01.ConsoleView;
+import com.epam.trainee.mvcblocks.controller.block03.RecordsController;
+import com.epam.trainee.mvcblocks.model.block03.bussiness.Notebook;
+import com.epam.trainee.mvcblocks.view.block01.ConsoleView;
 
 public class RunnerBlock03 {
     

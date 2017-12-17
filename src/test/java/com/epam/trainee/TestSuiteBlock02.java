@@ -1,12 +1,10 @@
 package com.epam.trainee;
 
-import com.epam.trainee.controller.block02.GameControllerTest;
-import com.epam.trainee.model.block02.BoundsTest;
-import com.epam.trainee.model.block02.GameLogicTest;
+import com.epam.trainee.mvcblocks.controller.block02.GameControllerTest;
+import com.epam.trainee.mvcblocks.model.block02.BoundsTest;
+import com.epam.trainee.mvcblocks.model.block02.GameLogicTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
-
-import java.util.Locale;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({

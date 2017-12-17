@@ -1,10 +1,9 @@
 package com.epam.trainee;
 
-import com.epam.trainee.controller.block01.SentenceController;
-import com.epam.trainee.model.block01.Sentence;
-import com.epam.trainee.view.block01.ConsoleView;
+import com.epam.trainee.mvcblocks.controller.block01.SentenceController;
+import com.epam.trainee.mvcblocks.model.block01.Sentence;
+import com.epam.trainee.mvcblocks.view.block01.ConsoleView;
 
-import java.util.Locale;
 import java.util.Scanner;
 
 public class RunnerBlock01 {

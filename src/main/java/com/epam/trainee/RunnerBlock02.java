@@ -1,9 +1,9 @@
 package com.epam.trainee;
 
-import com.epam.trainee.controller.block02.GameController;
-import com.epam.trainee.model.block02.Bounds;
-import com.epam.trainee.model.block02.GameLogic;
-import com.epam.trainee.view.block01.ConsoleView;
+import com.epam.trainee.mvcblocks.controller.block02.GameController;
+import com.epam.trainee.mvcblocks.model.block02.Bounds;
+import com.epam.trainee.mvcblocks.model.block02.GameLogic;
+import com.epam.trainee.mvcblocks.view.block01.ConsoleView;
 
 import java.util.Scanner;
 
