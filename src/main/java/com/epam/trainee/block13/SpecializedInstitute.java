@@ -10,15 +10,17 @@ public class SpecializedInstitute extends Institute {
     }
 
     @Override
-    public void popDocument() {
+    public void run() {
         StudentInfo info;
         try {
-            synchronized (blockingQueue) {
-                info = blockingQueue.take();
+            while (blockingQueue.hasMore()) {
+                synchronized (blockingQueue) {
+                    info = blockingQueue.take();
 
-                if (info.getSpeciality().equals(speciality)) {
-                    blockingQueue.accept();
-                    takeStudent(info);
+                    if (info.getSpeciality().equals(speciality)) {
+                        blockingQueue.accept();
+                        takeStudent(info);
+                    }
                 }
             }
         } catch (InterruptedException e) {

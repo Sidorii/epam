@@ -8,6 +8,8 @@ public class BlockedQueuePullDecorator<T> {
     private volatile T pulledElement;
     private volatile boolean isAccepted;
 
+    private final Object acceptMonitor = new Object();
+
     public BlockedQueuePullDecorator(BlockingQueue<T> queue) {
         this.queue = queue;
         isAccepted = false;
@@ -16,6 +18,7 @@ public class BlockedQueuePullDecorator<T> {
     public T take() throws InterruptedException {
         if (isAccepted) {
             pulledElement = queue.take();
+            isAccepted = false;
         }
         return pulledElement;
     }
@@ -25,6 +28,8 @@ public class BlockedQueuePullDecorator<T> {
     }
 
     public boolean hasMore() {
-        return queue.size() > 0;
+        synchronized (acceptMonitor) {
+            return queue.size() > 0;
+        }
     }
 }

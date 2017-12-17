@@ -2,7 +2,6 @@ package com.epam.trainee;
 
 import com.epam.trainee.block13.*;
 
-import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
@@ -24,7 +23,7 @@ public class RunnerBlock13 {
         InstituteImpl otherInstitute1 = new InstituteImpl("LNU1", queuePull);
         InstituteImpl otherInstitute2 = new InstituteImpl("LNU2", queuePull);
 
-        Thread prodTh = new Thread(producer);
+        Thread prodTh = new Thread(producer, "producer");
         prodTh.start();
 //        techInstitute.start();
 //        artsInstitute.start();
@@ -33,9 +32,13 @@ public class RunnerBlock13 {
         otherInstitute2.start();
 
         prodTh.join();
+        System.out.println("prod");
         otherInstitute.join();
+        System.out.println("other");
         otherInstitute1.join();
+        System.out.println("other1");
         otherInstitute2.join();
+        System.out.println("other2");
         System.out.println(students);
     }
 

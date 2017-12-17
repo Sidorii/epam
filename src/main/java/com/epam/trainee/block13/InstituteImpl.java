@@ -12,13 +12,14 @@ public class InstituteImpl extends Institute {
     }
 
     @Override
-    public void popDocument() {
+    public void run() {
         try {
-            int k = getRandomStudentsCount();
-            for (int i = 0; i < k; i++) {
-                StudentInfo info = blockingQueue.take();
-                blockingQueue.accept();
-                takeStudent(info);
+            while (blockingQueue.hasMore()){
+                synchronized (blockingQueue) {
+                    StudentInfo info = blockingQueue.take();
+                    blockingQueue.accept();
+                    takeStudent(info);
+                }
             }
         } catch (InterruptedException e) {
             e.printStackTrace();

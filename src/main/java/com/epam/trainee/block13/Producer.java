@@ -17,14 +17,12 @@ public class Producer implements Runnable {
     @Override
     public void run() {
         Iterator<StudentInfo> stdIterator = students.iterator();
-        while (stdIterator.hasNext()) {
-            try {
-                while (queue.size() < 50 && stdIterator.hasNext()) {
-                    queue.put(stdIterator.next());
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        try {
+            while (stdIterator.hasNext()) {
+                queue.put(stdIterator.next());
             }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }

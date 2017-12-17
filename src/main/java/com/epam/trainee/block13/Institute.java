@@ -12,15 +12,6 @@ public abstract class Institute extends Thread{
         this.blockingQueue = blockingQueue;
     }
 
-    @Override
-    public void run() {
-        while (blockingQueue.hasMore()) {
-            popDocument();
-        }
-    }
-
-    public abstract void popDocument();
-
     protected void takeStudent(StudentInfo info) {
         System.out.println("\t#" + ++counter);
         System.out.println("Institute '" + getName() + "' took: " + info);
