@@ -9,6 +9,8 @@ public class Producer implements Runnable {
     private final BlockingQueue<StudentInfo> queue;
     private Set<StudentInfo> students;
 
+    public static final StudentInfo DONE = new StudentInfo();
+
     public Producer(Set<StudentInfo> students, BlockingQueue<StudentInfo> queue) {
         this.queue = queue;
         this.students = students;
@@ -21,6 +23,7 @@ public class Producer implements Runnable {
             while (stdIterator.hasNext()) {
                 queue.put(stdIterator.next());
             }
+            queue.put(DONE);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

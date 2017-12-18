@@ -1,6 +1,6 @@
 package com.epam.trainee.block13;
 
-public class StudentInfo implements Comparable<StudentInfo>{
+public class StudentInfo{
 
     private static int idGenerator = 0;
 
@@ -40,12 +40,11 @@ public class StudentInfo implements Comparable<StudentInfo>{
         this.rate = rate;
     }
 
-    public void setSpeciality(Speciality speciality) {
-        this.speciality = speciality;
+    public float getRate() {
+        return rate;
     }
 
-    @Override
-    public int compareTo(StudentInfo o) {
-        return id - o.id;
+    public void setSpeciality(Speciality speciality) {
+        this.speciality = speciality;
     }
 }

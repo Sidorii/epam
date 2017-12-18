@@ -1,29 +1,30 @@
 package com.epam.trainee.block13;
 
 import java.util.Random;
+import java.util.concurrent.BlockingQueue;
 
 public class InstituteImpl extends Institute {
 
     private Random random;
 
-    public InstituteImpl(String name, BlockedQueuePullDecorator<StudentInfo> blockedQueue) {
-        super(name, blockedQueue);
+    public InstituteImpl(String name,
+                         BlockingQueue<StudentInfo> blockedQueue,
+                         StudentInfo endOfSequence) {
+        super(name, blockedQueue, endOfSequence);
         random = new Random();
     }
 
     @Override
-    public void run() {
-        try {
-            while (blockingQueue.hasMore()){
-                synchronized (blockingQueue) {
-                    StudentInfo info = blockingQueue.take();
-                    blockingQueue.accept();
-                    takeStudent(info);
-                }
+    public boolean process() throws InterruptedException {
+        for (int i = 0; i < getRandomStudentsCount(); i++) {
+            StudentInfo info = blockingQueue.take();
+            if (info == endOfSequence) {
+                blockingQueue.put(info);
+                return false;
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            takeStudent(info);
         }
+        return true;
     }
 
     private int getRandomStudentsCount() {
