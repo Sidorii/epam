@@ -31,6 +31,10 @@ public class SpecializedInstitute extends Institute {
             takeStudent(info);
             return;
         }
+        boolean isRemoved = blockingQueue.remove(endOfSequence);
         blockingQueue.put(info);
+        if (isRemoved) {
+            blockingQueue.put(endOfSequence);
+        }
     }
 }

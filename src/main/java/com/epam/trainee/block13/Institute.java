@@ -4,7 +4,7 @@ import java.util.concurrent.BlockingQueue;
 
 public abstract class Institute extends Thread {
 
-    private static int counter = 0;
+    private static volatile int counter = 0;
     protected StudentInfo endOfSequence;
     protected final BlockingQueue<StudentInfo> blockingQueue;
 
@@ -33,8 +33,10 @@ public abstract class Institute extends Thread {
     protected abstract boolean process() throws InterruptedException;
 
     protected void takeStudent(StudentInfo info) {
-//        System.out.println("\t#" + ++counter);
-//        System.out.println("Institute '" + getName() + "' took: " + info);
-        info.setRate(0.0f);
+        synchronized (Institute.class) {
+            System.out.println("\t#" + ++counter);
+            System.out.println("Institute '" + getName() + "' took: " + info);
+            info.setRate(0.0f);
+        }
     }
 }
