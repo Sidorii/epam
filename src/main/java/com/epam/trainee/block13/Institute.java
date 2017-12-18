@@ -1,10 +1,11 @@
 package com.epam.trainee.block13;
 
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public abstract class Institute extends Thread {
 
-    private static volatile int counter = 0;
+    private static AtomicInteger counter = new AtomicInteger(0);
     protected StudentInfo endOfSequence;
     protected final BlockingQueue<StudentInfo> blockingQueue;
 
@@ -31,10 +32,8 @@ public abstract class Institute extends Thread {
     protected abstract void process() throws InterruptedException;
 
     protected void takeStudent(StudentInfo info) {
-        synchronized (Institute.class) {
-            System.out.println("\t#" + ++counter);
+            System.out.println("\t#" + counter.incrementAndGet());
             System.out.println("Institute '" + getName() + "' took: " + info);
             info.setName("accepted");
-        }
     }
 }
