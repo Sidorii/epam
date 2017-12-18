@@ -36,7 +36,7 @@ public abstract class Institute extends Thread {
         synchronized (Institute.class) {
             System.out.println("\t#" + ++counter);
             System.out.println("Institute '" + getName() + "' took: " + info);
-            info.setRate(0.0f);
+            info.setName("accepted");
         }
     }
 }

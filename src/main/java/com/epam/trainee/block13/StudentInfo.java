@@ -24,16 +24,12 @@ public class StudentInfo{
         return speciality;
     }
 
-    @Override
-    public String toString() {
-        return "StudentInfo[ " +
-                "id=" + id +
-                ", rate=" + rate +
-                ", speciality=" + speciality + " ]";
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setRate(float rate) {
@@ -46,5 +42,13 @@ public class StudentInfo{
 
     public void setSpeciality(Speciality speciality) {
         this.speciality = speciality;
+    }
+
+    @Override
+    public String toString() {
+        return "StudentInfo[ " +
+                "id=" + id +
+                ", rate=" + rate +
+                ", speciality=" + speciality + " ]";
     }
 }

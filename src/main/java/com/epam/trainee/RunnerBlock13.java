@@ -28,7 +28,7 @@ public class RunnerBlock13 {
         otherInstitute.join();
         otherInstitute1.join();
         otherInstitute2.join();
-        students.stream().filter(s->s.getRate() != 0.0).forEach(System.out::println);
+        students.stream().filter(s-> !s.getName().equals("accepted")).forEach(System.out::println);
     }
 
     private static Set<StudentInfo> generateStudentSet(Speciality speciality, int count) {
