@@ -16,14 +16,13 @@ public class SpecializedInstitute extends Institute {
 
 
     @Override
-    public boolean process() throws InterruptedException {
+    public void process() throws InterruptedException {
         StudentInfo info = blockingQueue.take();
         if (info == endOfSequence) {
             blockingQueue.put(info);
-            return false;
+            throw new InterruptedException();
         }
         processStudent(info);
-        return true;
     }
 
     private void processStudent(StudentInfo info) throws InterruptedException {

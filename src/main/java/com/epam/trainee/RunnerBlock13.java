@@ -28,6 +28,7 @@ public class RunnerBlock13 {
         otherInstitute.join();
         otherInstitute1.join();
         otherInstitute2.join();
+        /*checks that all students infos had been processed by institutes (threads)*/
         students.stream().filter(s-> !s.getName().equals("accepted")).forEach(System.out::println);
     }
 

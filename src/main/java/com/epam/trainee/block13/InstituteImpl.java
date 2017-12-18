@@ -15,16 +15,15 @@ public class InstituteImpl extends Institute {
     }
 
     @Override
-    public boolean process() throws InterruptedException {
+    public void process() throws InterruptedException {
         for (int i = 0; i < getRandomStudentsCount(); i++) {
             StudentInfo info = blockingQueue.take();
             if (info == endOfSequence) {
                 blockingQueue.put(info);
-                return false;
+                throw new InterruptedException();
             }
             takeStudent(info);
         }
-        return true;
     }
 
     private int getRandomStudentsCount() {

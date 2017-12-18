@@ -19,18 +19,16 @@ public abstract class Institute extends Thread {
     public void run() {
         try {
             while (true) {
-                if (process()) {
-                    Thread.sleep(10);
-                    continue;
-                }
-                return;
+                Thread.sleep(10);
+                process();
             }
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            System.out.println(getName() + " is interrupted. That's mean the thread " +
+                    "processed all appropriate students");
         }
     }
 
-    protected abstract boolean process() throws InterruptedException;
+    protected abstract void process() throws InterruptedException;
 
     protected void takeStudent(StudentInfo info) {
         synchronized (Institute.class) {
